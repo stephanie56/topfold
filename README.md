@@ -1,36 +1,56 @@
+#  TopFold
+
+This is a Next.js application that uses Contentful as the headless CMS to manage and deliver content.
+
+## Get Started with Next.js
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
+Once install dependencies, run the development server:
 
 ```bash
+npm i
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content Management with Contentful
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Start by [signing up for a Contentful account](https://www.contentful.com/sign-up/). This will allow you to create and manage your content within the Contentful platform.
 
-## Learn More
+### Contentful CLI
 
-To learn more about Next.js, take a look at the following resources:
+This project includes the Contentful CLI as a development dependency. You can run Contentful CLI commands using npm scripts. Below is an example command and a detailed explanation of its components:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run contentful -- <command>
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- `npm run contentful`: Runs the `contentful` script from `package.json`, invoking the Contentful CLI from `node_modules` without needing a global install.
+  
+- `--`: This double dash is a separator that tells npm to pass any subsequent arguments directly to the Contentful CLI.
 
-## Deploy on Vercel
+For example, the following command lists all the commands related to the Contentful space:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run contentful -- space --help
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Contentful Login
+
+Log in to your contentful using the following command
+
+```bash
+npm run contentful -- login  
+```
+
+This command prompts you to authorize the login in a browser. Once completed, paste the access token ([Contentful Management Token](https://www.contentful.com/developers/docs/references/content-management-api/#/introduction/authentication)) into the Contentful CLI prompt. **Important:** Do not commit or share this management token, as it grants write access to your Contentful account.
+
+```bash
+A browser window will open where you will log in (or sign up if you don’t have an account), authorize this CLI tool and paste your CMA token here:
+
+? Continue login on the browser? Yes
+? Paste your token here: *******************************************
+
+Great! You've successfully logged in!
+```
